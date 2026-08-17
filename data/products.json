@@ -6,6 +6,12 @@
       "family": "Female",
       "price": 180.0,
       "size": "50ml",
+      "weight_kg": 0.3,
+      "dimensions_cm": {
+        "length": 10,
+        "width": 6,
+        "height": 6
+      },
       "image": "img/WhatsApp Image 2026-05-27 at 09.07.42.jpeg",
       "tagline": "Long-lasting, blooming florals",
       "notes": "Peony, rose water, soft musk",
@@ -19,6 +25,12 @@
       "family": "Unisex",
       "price": 180.0,
       "size": "50ml",
+      "weight_kg": 0.3,
+      "dimensions_cm": {
+        "length": 10,
+        "width": 6,
+        "height": 6
+      },
       "image": "img/WhatsApp Image 2026-05-27 at 09.05.30.jpeg",
       "tagline": "Crisp, juicy and long-lasting",
       "notes": "Red apple, fresh green accord, vanilla",
@@ -115,5 +127,6 @@
     "free_shipping_threshold": 500.0
   },
   "yoco_checkout_link": "https://luthuli-scents.vercel.app/api/create-checkout",
-  "tracking_api": "https://luthuli-scents.vercel.app/api/bob-track"
+  "tracking_api": "https://luthuli-scents.vercel.app/api/bob-track",
+  "quote_checkout_api": "https://luthuli-scents.vercel.app/api/quote-checkout"
 }

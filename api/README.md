@@ -143,3 +143,53 @@ Fulfilment is manual (Yoco payment → WhatsApp handoff → you book the courier
 on Bob Go). When you book, Bob Go issues a tracking reference / waybill;
 send that to the buyer (e.g. in the WhatsApp reply). They enter it on
 `track.html`. No order sync or webhook is required for this flow.
+
+---
+
+# LuthuliScents — Live quote + Yoco payment link (`api/quote-checkout.py`)
+
+Third serverless function: `POST /api/quote-checkout`. Used from the **Cart**
+page button "Generate & copy Yoco payment link".
+
+## Flow
+
+1. The cart page sends `{ items, delivery, successUrl, cancelUrl }`.
+2. The function looks up each product's **price + parcel spec server-side**
+   (the browser never sets the price), builds the parcels, and calls
+   `POST /rates` on Bob Go with your collection address, the buyer's delivery
+   address/contact, the declared value, and a `timeout`.
+3. Bob Go returns live courier rates inside the same POST. The function picks
+   the **cheapest** successful rate.
+4. Total = product subtotal + the live shipping rate. The function creates a
+   Yoco hosted checkout for that total and returns `paymentLink`.
+5. The page copies the link to the clipboard so the owner can paste it into
+   WhatsApp for the buyer.
+
+## Env vars (Vercel → Project → Settings → Environment Variables)
+
+- `YOCO_SECRET_KEY` — required (shared with `create-checkout`).
+- `BOBGO_API_KEY` — required (shared with `bob-track`).
+- `BOBGO_BASE_URL` — optional; defaults to the sandbox. Switch to
+  `https://api.bobgo.co.za/v2` for live rates.
+- `BOBGO_COLLECTION_ADDRESS` — **required JSON** of your pickup address, e.g.:
+  ```json
+  {"company":"LuthuliScents","street_address":"46 Loveday Street, Trump Center Building, Wemmer","local_area":"Selby","city":"Johannesburg","zone":"Gauteng","country":"ZA","code":"2092"}
+  ```
+- `BOBGO_COLLECTION_NAME` / `BOBGO_COLLECTION_PHONE` / `BOBGO_COLLECTION_EMAIL`
+  — the collection contact. Bob Go requires a **phone or email** for both the
+  collection and the delivery contact.
+
+The returned amount covers products + live courier delivery. The owner still
+books the courier on Bob Go (which settles the freight to the Bob Go account
+separately); the Yoco link collects product + delivery from the buyer in one
+payment.
+
+## Local testing
+
+```bash
+# env present (see .env.example) + BOBGO_COLLECTION_ADDRESS etc.
+vercel dev
+curl -X POST http://localhost:3000/api/quote-checkout \
+  -H "Content-Type: application/json" \
+  -d '{"items":[{"key":"rosie","quantity":2}],"delivery":{"name":"J Buyer","phone":"+27123456789","email":"b@t.com","city":"Cape Town","postal":"8001"},"successUrl":"https://x/success.html","cancelUrl":"https://x/cart.html"}'
+```

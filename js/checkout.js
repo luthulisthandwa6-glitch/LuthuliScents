@@ -220,6 +220,105 @@
     showSummary(result);
   }
 
+  var QUOTE_API = (window.LS_DATA && window.LS_DATA.quote_checkout_api) || '';
+  var QUOTE_BUSY = false;
+
+  function quoteMessage(html) {
+    var el = document.getElementById('quote-result');
+    if (el) el.innerHTML = html;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () { return true; });
+    }
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return Promise.resolve(ok);
+  }
+
+  function generateQuoteLink(form) {
+    var btn = document.getElementById('quote-pay-btn');
+    if (!btn || QUOTE_BUSY) return;
+    if (!QUOTE_API) {
+      quoteMessage('<div class="alert warning">Live shipping isn\u2019t configured yet. Add a quote API URL to data/products.json.</div>');
+      return;
+    }
+    var items = window.cartItems().map(function (i) { return { key: i.product.key, quantity: i.quantity }; });
+    if (items.length === 0) {
+      quoteMessage('<div class="alert warning">Your cart is empty.</div>');
+      return;
+    }
+    var val = function (nm) { return (form.elements[nm] ? form.elements[nm].value.trim() : ''); };
+    var postal = val('postal');
+    var phone = val('phone');
+    var email = val('email');
+    if (!postal) { quoteMessage('<div class="alert warning">Please enter the delivery postal code above.</div>'); return; }
+    if (!phone && !email) { quoteMessage('<div class="alert warning">Please enter the buyer\u2019s phone or email so Bob Go can quote.</div>'); return; }
+
+    var body = {
+      items: items,
+      delivery: {
+        name: val('name'),
+        phone: phone,
+        email: email,
+        address: val('address'),
+        city: val('city'),
+        postal: postal
+      },
+      successUrl: new URL('success.html', window.location.href).href,
+      cancelUrl: new URL('cart.html', window.location.href).href
+    };
+
+    var old = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Getting live courier price\u2026';
+    QUOTE_BUSY = true;
+    quoteMessage('<div class="alert info">Quoting with Bob Go \u2014 this can take a few seconds\u2026</div>');
+
+    fetch(QUOTE_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, data: d }; }); })
+      .then(function (r) {
+        if (r.ok && r.data.paymentLink) {
+          return copyText(r.data.paymentLink).then(function () {
+            return { copied: true, data: r.data };
+          });
+        }
+        throw new Error(r.data.error || 'Could not generate payment link');
+      })
+      .then(function (res) {
+        var d = res.data;
+        quoteMessage(
+          '<div class="alert success">' +
+          '<p><strong>Payment link ready</strong> \u2014 it is copied to your clipboard.</p>' +
+          '<p>Subtotal: ' + window.LS_MONEY(d.subtotalCents / 100) +
+          ' &middot; Shipping (' + (d.shipping.provider + ' \u00b7 ' + d.shipping.service) + '): ' +
+          window.LS_MONEY(d.shippingCents / 100) +
+          ' &middot; <strong>Total: ' + window.LS_MONEY(d.totalCents / 100) + '</strong></p>' +
+          '<p><a class="btn" target="_blank" rel="noopener" href="' + d.paymentLink + '">Open payment link</a></p>' +
+          '<p class="caption">Paste the copied link into WhatsApp to send the buyer the payment page.</p>' +
+          '</div>'
+        );
+      })
+      .catch(function (err) {
+        quoteMessage('<div class="alert warning">' + escapeHtml(err.message) + '</div>');
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = old;
+        QUOTE_BUSY = false;
+      });
+  }
+
   function boot() {
     window.onCartChange = function () {
       renderCart();
@@ -240,6 +339,9 @@
 
     var form = document.getElementById('checkout-form');
     if (form) form.addEventListener('submit', handleSubmit);
+
+    var quoteBtn = document.getElementById('quote-pay-btn');
+    if (quoteBtn) quoteBtn.addEventListener('click', function () { generateQuoteLink(document.getElementById('checkout-form')); });
 
     var clearBtn = document.getElementById('clear-cart');
     if (clearBtn) clearBtn.addEventListener('click', function () { window.clearCart(); });
