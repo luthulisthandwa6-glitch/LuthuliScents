@@ -68,6 +68,7 @@ CATALOGUE = {
 def _collection_address():
     raw = (
         os.environ.get("COURIER_GUY_COLLECTION_ADDRESS")
+        or os.environ.get("THE_COURIER_GUY_COLLECTION_ADDRESS")
         or os.environ.get("TCG_COLLECTION_ADDRESS")
         or os.environ.get("SHIPLOGIC_COLLECTION_ADDRESS")
         or ""
@@ -256,6 +257,7 @@ def _parse_tcg_rates(data):
 def _tcg_rates(items, declared_value, city, postal, delivery_contact):
     key = (
         os.environ.get("COURIER_GUY_API_KEY")
+        or os.environ.get("THE_COURIER_GUY_API_KEY")
         or os.environ.get("TCG_API_KEY")
         or os.environ.get("SHIPLOGIC_API_KEY")
         or ""
@@ -271,16 +273,19 @@ def _tcg_rates(items, declared_value, city, postal, delivery_contact):
 
     coll_phone = (
         os.environ.get("COURIER_GUY_COLLECTION_PHONE")
+        or os.environ.get("THE_COURIER_GUY_COLLECTION_PHONE")
         or os.environ.get("TCG_COLLECTION_PHONE")
         or ""
     ).strip()
     coll_email = (
         os.environ.get("COURIER_GUY_COLLECTION_EMAIL")
+        or os.environ.get("THE_COURIER_GUY_COLLECTION_EMAIL")
         or os.environ.get("TCG_COLLECTION_EMAIL")
         or ""
     ).strip()
     coll_name = (
         os.environ.get("COURIER_GUY_COLLECTION_NAME")
+        or os.environ.get("THE_COURIER_GUY_COLLECTION_NAME")
         or os.environ.get("TCG_COLLECTION_NAME")
         or "LuthuliScents"
     ).strip()
@@ -294,6 +299,7 @@ def _tcg_rates(items, declared_value, city, postal, delivery_contact):
 
     base = (
         os.environ.get("COURIER_GUY_BASE_URL")
+        or os.environ.get("THE_COURIER_GUY_BASE_URL")
         or os.environ.get("TCG_BASE_URL")
         or os.environ.get("SHIPLOGIC_BASE_URL")
         or DEFAULT_TCG_BASE

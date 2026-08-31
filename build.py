@@ -123,6 +123,7 @@ FAMILIES = ["All", "Female", "Male", "Unisex"]
 SOCIAL_LINKS = {
     "TikTok": "https://www.tiktok.com/@sthandiwe386?is_from_webapp=1&sender_device=pc",
     "Instagram": "https://www.instagram.com/luthuliscents?igsh=NzJvNDNxbDJsY3Jv",
+    "LinkedIn": "https://www.linkedin.com/in/sthandiwe-luthuli-318695311?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "WhatsApp": "https://wa.me/27692380796",
     "X / Twitter": "https://x.com/L68220Luthuli",
     "Email": "mailto:sthandiweluthuli322@gmail.com",

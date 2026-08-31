@@ -67,9 +67,15 @@
     {
       "key": "apple-blaze",
       "name": "Apple Blaze",
-      "family": "Male",
+      "family": "Unisex",
       "price": 50.0,
-      "size": "15ml",
+      "size": "50ml",
+      "weight_kg": 0.3,
+      "dimensions_cm": {
+        "length": 10,
+        "width": 6,
+        "height": 6
+      },
       "image": "img/IMG-20260429-WA0066.jpg",
       "tagline": "Mysterious and sensual",
       "notes": "Blackberry, dark plum, amber musk",
@@ -113,6 +119,7 @@
   "social_links": {
     "TikTok": "https://www.tiktok.com/@sthandiwe386?is_from_webapp=1&sender_device=pc",
     "Instagram": "https://www.instagram.com/luthuliscents?igsh=NzJvNDNxbDJsY3Jv",
+    "LinkedIn": "https://www.linkedin.com/in/sthandiwe-luthuli-318695311?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "WhatsApp": "https://wa.me/27692380796",
     "X / Twitter": "https://x.com/L68220Luthuli",
     "Email": "mailto:sthandiweluthuli322@gmail.com",
@@ -127,6 +134,6 @@
     "free_shipping_threshold": 500.0
   },
   "yoco_checkout_link": "https://luthuli-scents.vercel.app/api/create-checkout",
-  "tracking_api": "https://luthuli-scents.vercel.app/api/bob-track",
+  "tracking_api": "https://luthuli-scents.vercel.app/api/tcg-track",
   "quote_checkout_api": "https://luthuli-scents.vercel.app/api/quote-checkout"
 }

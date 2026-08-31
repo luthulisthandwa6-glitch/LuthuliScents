@@ -139,6 +139,7 @@ class handler(BaseHTTPRequestHandler):
 
         key = (
             os.environ.get("COURIER_GUY_API_KEY")
+            or os.environ.get("THE_COURIER_GUY_API_KEY")
             or os.environ.get("TCG_API_KEY")
             or os.environ.get("SHIPLOGIC_API_KEY")
             or ""
@@ -146,6 +147,7 @@ class handler(BaseHTTPRequestHandler):
 
         base = (
             os.environ.get("COURIER_GUY_BASE_URL")
+            or os.environ.get("THE_COURIER_GUY_BASE_URL")
             or os.environ.get("TCG_BASE_URL")
             or os.environ.get("SHIPLOGIC_BASE_URL")
             or DEFAULT_BASE_URL
