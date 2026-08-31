@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products — LuthuliScents</title>
-    <meta name="description" content="Browse the LuthuliScents collection — female, male and unisex perfumes. Every bottle is R180 for 50ml." />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body data-active="products"
-        data-hero-title="Shop our scents"
-        data-hero-subtitle="Every bottle is R180 for 50ml. Filter by scent family to find your signature."
-        data-hero-float="colourful-male.png">
-        data-hero-side="left">
-    <div id="site-header"></div>
-    <div id="site-hero"></div>
 
-    <main class="container page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — LuthuliScents</title>
+  <meta name="description"
+    content="Browse the LuthuliScents collection — female, male and unisex perfumes. Every bottle is R180 for 50ml." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-      <div style="max-width:320px; margin:0 auto 32px;">
-        <label for="family-filter">Scent family</label>
-        <select id="family-filter">
-          <option value="All" selected>All</option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-          <option value="Unisex">Unisex</option>
-        </select>
-      </div>
+<body data-active="products" data-hero-title="Shop our scents"
+  data-hero-subtitle="Every bottle is R180 for 50ml. Filter by scent family to find your signature."
+  data-hero-float="colourful-male.png">
+  <div id="site-header"></div>
+  <div id="site-hero"></div>
 
-      <div class="grid grid-3" id="products-grid"></div>
+  <main class="container page">
 
-      <p class="caption" style="text-align:center; margin-top:36px;">
-        Winter sale: free shipping on all orders over R500.
-      </p>
-    </main>
+    <div style="max-width:320px; margin:0 auto 32px;">
+      <label for="family-filter">Scent family</label>
+      <select id="family-filter">
+        <option value="All" selected>All</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+    </div>
 
-    <div id="site-footer"></div>
+    <div class="grid grid-3" id="products-grid"></div>
 
-    <script src="js/data.js"></script>
-    <script src="js/site.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/products.js"></script>
-    <script>
-      window.LS_READY.then(function () {
-        window.initFamilyFilter('products-grid', 'family-filter');
-      });
-    </script>
-  </body>
+    <p class="caption" style="text-align:center; margin-top:36px;">
+      Winter sale: free shipping on all orders over R500.
+    </p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script>
+    window.LS_READY.then(function () {
+      window.initFamilyFilter('products-grid', 'family-filter');
+    });
+  </script>
+</body>
+
 </html>

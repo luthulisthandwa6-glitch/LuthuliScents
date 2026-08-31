@@ -42,14 +42,8 @@
       "key": "apple-blaze",
       "name": "Apple Blaze",
       "family": "Unisex",
-      "price": 180.0,
-      "size": "50ml",
-      "weight_kg": 0.3,
-      "dimensions_cm": {
-        "length": 10,
-        "width": 6,
-        "height": 6
-      },
+      "price": 40.0,
+      "size": "10ml",
       "image": "img/apple blaze.jpeg",
       "tagline": "A fiery caramelised apple accord",
       "notes": "Baked apple, warm amber, caramel",
@@ -61,14 +55,8 @@
       "key": "woody",
       "name": "Woody",
       "family": "Male",
-      "price": 180.0,
-      "size": "50ml",
-      "weight_kg": 0.3,
-      "dimensions_cm": {
-        "length": 10,
-        "width": 6,
-        "height": 6
-      },
+      "price": 40.0,
+      "size": "10ml",
       "image": "img/woody2.png",
       "tagline": "Bold, masculine, grounded",
       "notes": "Cedarwood, sandalwood, smoky vetiver",
@@ -77,17 +65,11 @@
       "badge": "New"
     },
     {
-      "key": "noir-velvet",
-      "name": "Noir Velvet",
-      "family": "Female",
-      "price": 180.0,
-      "size": "50ml",
-      "weight_kg": 0.3,
-      "dimensions_cm": {
-        "length": 10,
-        "width": 6,
-        "height": 6
-      },
+      "key": "apple-blaze",
+      "name": "Apple Blaze",
+      "family": "Male",
+      "price": 50.0,
+      "size": "15ml",
       "image": "img/IMG-20260429-WA0066.jpg",
       "tagline": "Mysterious and sensual",
       "notes": "Blackberry, dark plum, amber musk",
@@ -99,14 +81,8 @@
       "key": "sweetapple-rose",
       "name": "Sweet Apple Rose",
       "family": "Unisex",
-      "price": 180.0,
-      "size": "50ml",
-      "weight_kg": 0.3,
-      "dimensions_cm": {
-        "length": 10,
-        "width": 6,
-        "height": 6
-      },
+      "price": 40.0,
+      "size": "10ml",
       "image": "img/sweetapple.jpeg",
       "tagline": "Rosy apple, fresh and fun",
       "notes": "Ripe apple, rose petals, sugar",
@@ -115,17 +91,11 @@
       "badge": "Gift Idea"
     },
     {
-      "key": "signature-gold",
-      "name": "Signature Gold",
+      "key": "woody",
+      "name": "woody",
       "family": "Unisex",
-      "price": 180.0,
-      "size": "50ml",
-      "weight_kg": 0.3,
-      "dimensions_cm": {
-        "length": 10,
-        "width": 6,
-        "height": 6
-      },
+      "price": 50.0,
+      "size": "15ml",
       "image": "img/WhatsApp Image 2026-05-11 at 14.58.30.jpeg",
       "tagline": "The house signature — timeless luxury",
       "notes": "Golden amber, white florals, oud",

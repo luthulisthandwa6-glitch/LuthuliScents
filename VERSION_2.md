@@ -13,8 +13,8 @@ GitHub Pages only serves static HTML/CSS/JS — it **cannot run Python**. So:
 - **Python (`build.py`)** runs locally or in CI to generate the catalog data
   (`data/products.json`) and to process downloaded order exports. It is not
   part of the served site.
-- The BobGo courier API is **not** called from the browser (secret key + CORS
-  limitations). Shipping uses a simple flat rate instead; orders are captured
+- The Courier Guy API is proxied via Vercel serverless functions (`/api/quote-checkout`
+  and `/api/tcg-track`) so secret keys are never exposed in the browser. Orders are captured
   via a **Yoco payment link** plus a **WhatsApp order handoff**.
 
 ## 2. Project structure
@@ -48,7 +48,7 @@ GitHub Pages only serves static HTML/CSS/JS — it **cannot run Python**. So:
 | V1 / Streamlit feature          | V2 (this site)                                     |
 | ------------------------------- | -------------------------------------------------- |
 | `st.session_state` cart         | `localStorage` cart — survives page loads           |
-| BobGo live courier rates        | Flat shipping rate (R85 metro / R120 elsewhere)     |
+| The Courier Guy live rates      | Real-time quotes via `/api/quote-checkout`          |
 | Free shipping over R500         | Preserved (client-side)                            |
 | Yoco checkout                  | Vercel serverless function (`/api/create-checkout`) builds a cart-specific hosted checkout |
 | Server-side order capture       | WhatsApp order handoff + form → CSV (via build.py) |
