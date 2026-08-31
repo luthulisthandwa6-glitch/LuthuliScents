@@ -1,6 +1,6 @@
 /* LuthuliScents — order tracking page.
    Sends the customer's waybill / tracking reference to the Vercel function
-   `/api/bob-track` (Bob Go tracking proxy — the BobGo key never leaves the
+   `/api/tcg-track` (The Courier Guy tracking proxy — the Courier Guy key never leaves the
    server) and renders the events as a vertical timeline. */
 
 (function () {
@@ -72,7 +72,7 @@
 
     var api = (window.LS_DATA && window.LS_DATA.tracking_api) || '';
     if (!api) {
-      note('<div class="alert warning">Tracking isn\u2019t configured yet. The merchant still needs to add the BobGo tracking URL.</div>');
+      note('<div class="alert warning">Tracking isn\u2019t configured yet. The merchant still needs to add the Courier Guy tracking URL.</div>');
       return;
     }
 

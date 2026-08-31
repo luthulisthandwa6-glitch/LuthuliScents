@@ -123,6 +123,7 @@ FAMILIES = ["All", "Female", "Male", "Unisex"]
 SOCIAL_LINKS = {
     "TikTok": "https://www.tiktok.com/@sthandiwe386?is_from_webapp=1&sender_device=pc",
     "Instagram": "https://www.instagram.com/luthuliscents?igsh=NzJvNDNxbDJsY3Jv",
+    "LinkedIn": "https://www.linkedin.com/in/sthandiwe-luthuli-318695311?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     "WhatsApp": "https://wa.me/27692380796",
     "X / Twitter": "https://x.com/L68220Luthuli",
     "Email": "mailto:sthandiweluthuli322@gmail.com",
@@ -142,11 +143,11 @@ SHIPPING = {
 # to Vercel and copy the .vercel.app URL. See api/README.md.
 YOCO_CHECKOUT_API = "https://luthuli-scents.vercel.app/api/create-checkout"
 
-# Vercel serverless function that proxies BobGo tracking for the Track page
-# (holds BOBGO_API_KEY server-side). Same <project>.vercel.app host as above.
-BOBGO_TRACK_API = "https://luthuli-scents.vercel.app/api/bob-track"
+# Vercel serverless function that proxies The Courier Guy tracking for the Track page
+# (holds COURIER_GUY_API_KEY server-side). Same <project>.vercel.app host as above.
+TCG_TRACK_API = "https://luthuli-scents.vercel.app/api/tcg-track"
 
-# Vercel serverless function that returns a live BobGo shipping quote + a Yoco
+# Vercel serverless function that returns a live Courier Guy shipping quote + a Yoco
 # payment link for that total, so the owner can copy it into WhatsApp.
 QUOTE_CHECKOUT_API = "https://luthuli-scents.vercel.app/api/quote-checkout"
 
@@ -160,7 +161,7 @@ def build_products() -> None:
         "social_links": SOCIAL_LINKS,
         "shipping": SHIPPING,
         "yoco_checkout_link": YOCO_CHECKOUT_API,
-        "tracking_api": BOBGO_TRACK_API,
+        "tracking_api": TCG_TRACK_API,
         "quote_checkout_api": QUOTE_CHECKOUT_API,
     }
     out = DATA_DIR / "products.json"

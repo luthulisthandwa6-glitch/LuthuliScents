@@ -1,8 +1,8 @@
 /* LuthuliScents — checkout flow (cart page).
    Flat-rate shipping, order summary, Yoco payment link and a WhatsApp order
    handoff so orders are still captured for fulfilment on a static site.
-   Mirrors the Streamlit checkout (views/cart.py) minus the server-side
-   BobGo rate lookup, which cannot run on GitHub Pages. */
+   Mirrors the Streamlit checkout (views/cart.py) with The Courier Guy live
+   rate quoting serverless function. */
 
 (function () {
   'use strict';
@@ -259,7 +259,7 @@
     var phone = val('phone');
     var email = val('email');
     if (!postal) { quoteMessage('<div class="alert warning">Please enter the delivery postal code above.</div>'); return; }
-    if (!phone && !email) { quoteMessage('<div class="alert warning">Please enter the buyer\u2019s phone or email so Bob Go can quote.</div>'); return; }
+    if (!phone && !email) { quoteMessage('<div class="alert warning">Please enter the buyer\u2019s phone or email so The Courier Guy can quote.</div>'); return; }
 
     var body = {
       items: items,
@@ -268,6 +268,7 @@
         phone: phone,
         email: email,
         address: val('address'),
+        suburb: val('suburb'),
         city: val('city'),
         postal: postal
       },
@@ -279,7 +280,7 @@
     btn.disabled = true;
     btn.textContent = 'Getting live courier price\u2026';
     QUOTE_BUSY = true;
-    quoteMessage('<div class="alert info">Quoting with Bob Go \u2014 this can take a few seconds\u2026</div>');
+    quoteMessage('<div class="alert info">Quoting with The Courier Guy \u2014 this can take a few seconds\u2026</div>');
 
     fetch(QUOTE_API, {
       method: 'POST',
