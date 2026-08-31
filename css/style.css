@@ -161,7 +161,6 @@ body[data-active="cart"] .hero {
   margin-top: 28px;
 }
 .hero-float {
-  z-index: 1;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -186,7 +185,7 @@ body[data-active="cart"] .hero {
 }
 .hero-inner {
   position: relative;
-  z-index: 2;
+  /* z-index: 2; */
 }
 .hero:has(.hero-float) .hero-inner {
   padding-inline: clamp(0px, 6vw, 56px);
@@ -609,3 +608,4 @@ main.container.page > :first-child { margin-top: 0; }
   .cart-line { gap: 10px; }
   .contact-links a { padding: 12px 12px; }
 }
+
